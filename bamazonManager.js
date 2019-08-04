@@ -14,7 +14,6 @@ var connection = mysql.createConnection({
     password: "root",
     database: "bamazon_db"
 });
-
 connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
@@ -22,7 +21,6 @@ connection.connect(function (err) {
     afterConnection();
 
 });
-
 function afterConnection() {
     connection.query("SELECT * FROM products", function (err, res) {
         if (err) throw err;
@@ -30,6 +28,10 @@ function afterConnection() {
         // connection.end();
     });
 };
+
+
+
+
 inquirer
     .prompt([
         {
@@ -37,15 +39,15 @@ inquirer
             message: "Menu options",
             choices: ["View Products for Sale", "View Low Inventory", "Add to Inventory", "Add New Product"],
             name: "menu"
-        
+
         }
-    ]).then (function(choice) {
-        if (choice.menu === View_Products_for_Sale) {
+    ]).then(function (choice) {
+        if (choice.menu === [0]) {
             connection.query("SELECT * FROM products", function (err, res) {
                 if (err) throw err;
                 for (var i = 0; i < res.length; i++) {
                     console.log(res[i].id + " | " + res[i].itemId + " | " + res[i].product_name + " | " + res[i].price + " | " + res[i].stock_quantity);
                 }
-              }
-        )}
             });
+        };
+    });

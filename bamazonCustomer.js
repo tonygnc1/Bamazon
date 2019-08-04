@@ -56,12 +56,16 @@ function queryAllProducts() {
         function updateCount() {
             connection.query("SELECT * FROM products", function (err, res) {
                 if (err) throw err;
-                if (res[i].stock_quantity >= "name.howMany") + (res[i].itemId === "name.whatId")
+                if (res[i].stock_quantity >= "name.howMany") + (res[i].itemId === "name.whatId"),
 
-                "UPDATE products SET stock_quantity = stock_quantity - name.howMany"
-            // console.log(res);
-            // connection.end();
-        })
+                    "UPDATE products SET stock_quantity = stock_quantity - name.howMany"
+
+                else {
+                    console.log("Insufficient Quantity")
+                };
+                // console.log(res);
+                // connection.end();
+            })
         };
 
 
