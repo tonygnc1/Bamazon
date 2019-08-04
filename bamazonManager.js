@@ -12,11 +12,11 @@ var connection = mysql.createConnection({
 
     // Your password
     password: "root",
-    database: "bamazon_db"
+    database: "bamazon_db"  
 });
 connection.connect(function (err) {
     if (err) throw err;
-    console.log("connected as id " + connection.threadId);
+    // console.log("connected as id " + connection.threadId);
     queryAllProducts();
     afterConnection();
 
