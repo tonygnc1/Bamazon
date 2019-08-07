@@ -52,27 +52,43 @@ function queryAllProducts() {
                     name: "howMany",
                     message: "How many would you like?"
                 },
-            ]);
-        function updateCount() {
-            connection.query("SELECT * FROM products", function (err, res) {
-                if (err) throw err;
-                if (res[i].stock_quantity >= "name.howMany") + (res[i].itemId === "name.whatId"),
+            ]).then(function (answers) {
+                console.log(answers);
+                connection.query("SELECT * FROM products", function (err, res) {
+                    // console.log(res);
+                    if (err) throw err;
+                    for (var i = 0; i < res.length; i++) {
+                    }
+                    var stock_quantity = stock_quantity - parseInt(answers.howMany)
 
-                    "UPDATE products SET stock_quantity = stock_quantity - name.howMany"
 
-                else {
-                    console.log("Insufficient Quantity")
-                };
+                    var j
+                    for (var i = 0; i < res.length; i++) {
+                        if (answers.whatId == res[i].itemId) j = i
+                    }
+                    console.log(j);
+                    if ((res[j].stock_quantity >= parseInt(answers.howMany)) && (res[j].itemId == answers.whatId)) {
+                        connection.query("UPDATE products SET  stock_quantity ="  + "WHERE itemId =" + answers.whatId, function (err, res) {
+                            console.log("UPDATE products SET  stock_quantity =1" + stock_quantity - parseInt(answers.howMany) + "WHERE itemId =" + answers.whatId);
+                            // console.log(res.affectedRows + " record(s) updated");
+                        })
+                    } else {
+                        console.log("Insufficient Quantity")
+
+                    }
+
+
+                })
                 // console.log(res);
                 // connection.end();
             })
-        };
-
-
-        connection.end();
-
     });
+
+
+    // connection.end();
+
 };
+
 
 
 
